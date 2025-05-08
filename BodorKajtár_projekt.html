@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globális Videójáték Elemzés</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4654;
+            --primary-dark: #ba3a46;
+            --background: #111823;
+            --background-light: #2e364d;
+            --turquoise: #67c0c9;
+            --turquoise-dark: #155156;
+            --navy: #2e364d;
+            --text-color: #e7cbc3;
+        }
+
+        body {
+            background-color: var(--background);
+            margin: 0;
+            padding: 0;
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
+            line-height: 1.6;
+            background-image: linear-gradient(45deg, var(--background) 0%, var(--background-light) 100%);
+            min-height: 100vh;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: rgba(17, 24, 35, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(255, 70, 84, 0.1);
+        }
+
+        .nav-container {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .logo:hover {
+            color: var(--turquoise);
+            text-shadow: 0 0 10px rgba(103, 192, 201, 0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            background-color: var(--turquoise);
+            color: var(--background);
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 70, 84, 0.3);
+        }
+
+        /* Main content */
+        .main-container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 42px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--turquoise), var(--primary));
+            border-radius: 2px;
+        }
+
+        .authors {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 20px;
+            margin: -20px 0 40px 0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .authors span {
+            margin: 0 10px;
+        }
+
+        /* Section styles */
+        .section {
+            background: linear-gradient(135deg, rgba(46, 54, 77, 0.8) 0%, rgba(17, 24, 35, 0.8) 100%);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(103, 192, 201, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            border-color: var(--turquoise);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(103, 192, 201, 0.2);
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--turquoise);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section p {
+            color: var(--text-color);
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 10px 0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight {
+            color: var(--turquoise);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                width: 95%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .main-container {
+                width: 95%;
+                margin-top: 160px;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .nav-item {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">Videójáték Eladások</a>
+            <nav class="nav-menu">
+                <a href="BodorKajtár_projekt.html" class="nav-item active">Bevezető</a>
+                <a href="top_15_statisztikak.html" class="nav-item">TOP 15</a>
+                <a href="videojáték_eladások.html" class="nav-item">Eladások földrajzilag</a>
+                <a href="combined_visualizations.html" class="nav-item">Eladások platformonként</a>
+                <a href="project_summary.html" class="nav-item">Következtetés</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <h1 class="title">Globális videójáték-eladások elemzése platformonként és régiónként (2000–2020)</h1>
+        
+        <div class="authors">
+            ⚔️ Bodor Csongor - Imre és Kajtár Zsófia ⚔️
+        </div>
+
+        <div id="intro-content"></div>
+    </div>
+
+    <script>
+        // Bevezető tartalom betöltése
+        fetch('video_games_intro.html')
+            .then(response => response.text())
+            .then(html => {
+                // Ideiglenes div létrehozása a HTML parse-olásához
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // A description div tartalmának kinyerése
+                const descriptionContent = doc.querySelector('.description');
+                
+                if (descriptionContent) {
+                    // A section-ök kinyerése és beillesztése
+                    const sections = descriptionContent.querySelectorAll('.section');
+                    const introContent = document.getElementById('intro-content');
+                    
+                    sections.forEach(section => {
+                        introContent.appendChild(section.cloneNode(true));
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Hiba történt a tartalom betöltése során:', error);
+                document.getElementById('intro-content').innerHTML = 
+                    '<div class="section"><p style="color: var(--primary);">Hiba történt a tartalom betöltése során. Kérjük, frissítse az oldalt.</p></div>';
+            });
+    </script>
+</body>
+</html> 
